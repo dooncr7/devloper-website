@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;900&family=Roboto:wght@300;400;500;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    direction: rtl;
+  }
+
+  body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+    color: #ffffff;
+    overflow-x: hidden;
+  }
+
+  /* Japanese Font Class */
+  .font-japanese {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 600;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #1a1a2e;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #dc2626, #fbbf24);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #b91c1c, #f59e0b);
+  }
+
+  /* Selection Color */
+  ::selection {
+    background: rgba(220, 38, 38, 0.3);
+    color: #ffffff;
+  }
+
+  /* Focus Styles */
+  button:focus,
+  a:focus {
+    outline: 2px solid #dc2626;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Japanese-inspired animations */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out;
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    background: linear-gradient(45deg, #dc2626, #fbbf24, #dc2626);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 3s ease infinite;
+  }
+
+  /* Japanese-style borders */
+  .japanese-border {
+    border: 2px solid;
+    border-image: linear-gradient(45deg, #dc2626, #fbbf24) 1;
+  }
+
+  /* Glass morphism effect */
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Button hover effects */
+  .btn-japanese {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .btn-japanese::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+
+  .btn-japanese:hover::before {
+    left: 100%;
+  }
+
+  /* Card hover effects */
+  .card-hover {
+    transition: all 0.3s ease;
+    transform-style: preserve-3d;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-10px) rotateX(5deg);
+    box-shadow: 0 20px 40px rgba(220, 38, 38, 0.2);
+  }
+}
+
+@layer utilities {
+  /* Text shadows */
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .text-shadow-lg {
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
+  }
+
+  /* Japanese-inspired spacing */
+  .spacing-japanese {
+    letter-spacing: 0.05em;
+  }
+
+  /* RTL support */
+  .rtl {
+    direction: rtl;
+  }
+
+  .ltr {
+    direction: ltr;
+  }
+}
+
+/* Keyframe animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 20px rgba(220, 38, 38, 0.5);
+  }
+  to {
+    box-shadow: 0 0 30px rgba(220, 38, 38, 0.8), 0 0 40px rgba(251, 191, 36, 0.3);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Responsive design enhancements */
+@media (max-width: 768px) {
+  .font-japanese {
+    font-size: 0.9em;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-5px);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .glass {
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #ffffff;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .animate-float,
+  .animate-glow,
+  .animate-slide-up {
+    animation: none;
+  }
+}
